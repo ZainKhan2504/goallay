@@ -1,6 +1,7 @@
 const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
+const cors = require("cors");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const connectDB = require("./config/db");
 const port = process.env.PORT || 5000;
@@ -8,6 +9,13 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
+
+// CORS middleware
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 // Body Parser
 app.use(express.json());
